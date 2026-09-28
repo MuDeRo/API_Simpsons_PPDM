@@ -2,7 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const image =  '../atv_api_simpsons_ppdm/assets/image.png'
+import ButtonComponent from '../../components/buttonComponent';
+import CharactersList from '../CharactersList';
+
+
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -14,21 +17,19 @@ export default function HomeScreen({ navigation }) {
 
         <Text style={styles.title}>Simpsons App</Text>
 
-        <Image source={require(image)} style={styles.img} />
+        <Image source={require('../../../assets/image.png')} style={styles.img} />
 
         <Text style={styles.description}>
-          Bem-vindo! Esta aplicação consome a API pública dos Simpsons para apresentar 
-          informações sobre os seus personagens favoritos, incluindo idade, ocupação e 
-          status de vida.
+          Bem-vindo! Esta aplicação consome a API pública dos Simpsons
         </Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.8}
+        
+        
+        <ButtonComponent
           onPress={() => navigation.navigate('CharactersList')}
-        >
-          <Text style={styles.buttonText}>Explorar Personagens</Text>
-        </TouchableOpacity>
+        />
+
+        
       </View>
     </SafeAreaView>
   );
@@ -37,7 +38,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FED90F', 
+    backgroundColor: '#f0dc67', 
   },
   content: {
     flex: 1,
@@ -71,27 +72,12 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginBottom: 32,
   },
-  button: {
-    backgroundColor: '#000',
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 12,
-    width: '100%',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  buttonText: {
-    color: '#FFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
 
   img:{
-    borderRadius: 5,
+    borderRadius: 15,
+    marginBottom: 25,
+    
+
 
   }
 });

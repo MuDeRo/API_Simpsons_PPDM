@@ -17,9 +17,10 @@ export default function CharactersList({ navigation }) {
       const response = await api.get(`/characters?page=${pageNumber}`);
       
       // A API retorna um array de personagens diretamente ou dentro de um objeto 'data'
-      const data = Array.isArray(response.data) ? response.data : response.data.data;
+      const data = Array.isArray(response.data.results) ? response.data : response.data.data;
       
-      setCharacters(data || []);
+      
+      setCharacters(data.results || []);
     } catch (error) {
       console.error('Erro ao buscar personagens:', error);
     } finally {
@@ -52,7 +53,7 @@ export default function CharactersList({ navigation }) {
       <TouchableOpacity
         style={styles.card}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('CardCaracter', { character: item })}
+        onPress={() => navigation.navigate('CharacterDetails', { character: item })}
       >
         {imageUrl ? (
           <Image source={{ uri: imageUrl }} style={styles.avatar} />
@@ -66,7 +67,7 @@ export default function CharactersList({ navigation }) {
           <Text style={styles.name}>{item.name}</Text>
           <Text style={styles.detailText}><Text style={styles.label}>Idade:</Text> {item.age || 'N/A'}</Text>
           <Text style={styles.detailText}><Text style={styles.label}>Gênero:</Text> {item.gender}</Text>
-          <Text style={styles.detailText}><Text style={styles.label}>Ocupação:</Text> {item.occupation || 'N/A'}</Text>
+          
           
           <View style={styles.statusBadge}>
             <View style={[styles.statusDot, { backgroundColor: isAlive ? '#4CAF50' : '#F44336' }]} />
